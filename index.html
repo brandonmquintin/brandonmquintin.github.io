@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandon Quintin - Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #202020;
+        }
+
+        body {
+            font-family: Palatino, 'Palatino Linotype', 'Book Antiqua', serif;
+            font-size: 20px;
+            color: #202020;
+            background: #fff;
+            box-sizing: content-box;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 125px 149px 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 157px;
+        }
+
+        .header-left .name {
+            font-weight: bold;
+            display: block;
+        }
+
+        .header-left .title {
+            font-style: italic;
+            display: block;
+        }
+
+        .header-right a {
+            color: #202020;
+            text-decoration: underline;
+        }
+
+
+
+
+        .accordion-header {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .accordion-item + .accordion-item {
+            margin-top: 19px;
+        }
+
+        .accordion-toggle {
+            margin-left: 0.4em;
+        }
+
+        .accordion-header:hover {
+            opacity: 0.7;
+        }
+
+        .accordion-content {
+            display: none;
+            margin-top: 22px;
+            padding-bottom: 17px;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        .biography p {
+            font-size: 14px;
+            line-height: 20px;
+            max-width: 650px;
+        }
+
+        .biography a {
+            color: #202020;
+            text-decoration: underline;
+        }
+
+        .gallery {
+            position: relative;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, #000 80%, transparent 100%);
+            mask-image: linear-gradient(to right, #000 80%, transparent 100%);
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item {
+            flex-shrink: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #fafafa;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        #book-design .gallery-item {
+            padding: 0;
+        }
+
+
+        .gallery-nav {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .gallery-nav button {
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 34px;
+            height: 34px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0;
+        }
+
+        .gallery-nav .prev::after {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-left: 1.5px solid #202020;
+            border-bottom: 1.5px solid #202020;
+            transform: rotate(45deg);
+            margin-left: 2px;
+        }
+
+        .gallery-nav .next::after {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-right: 1.5px solid #202020;
+            border-top: 1.5px solid #202020;
+            transform: rotate(45deg);
+            margin-right: 2px;
+        }
+
+        .gallery-nav button:hover {
+            background: #f5f5f5;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-container {
+            position: relative;
+            width: min(1000px, 90vw, 90vh);
+            height: min(1000px, 90vw, 90vh);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 15px;
+        }
+
+        .lightbox-container.no-padding {
+            padding: 0;
+            background: transparent;
+        }
+
+        .lightbox-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-family: Palatino, 'Palatino Linotype', 'Book Antiqua', serif;
+            font-size: 24px;
+            color: #202020;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1;
+        }
+
+        .lightbox-close:hover {
+            opacity: 0.7;
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 20px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0;
+        }
+
+        .lightbox-prev::after {
+            content: '';
+            display: block;
+            width: 14px;
+            height: 14px;
+            border-left: 2px solid #202020;
+            border-bottom: 2px solid #202020;
+            transform: rotate(45deg);
+            margin-left: 4px;
+        }
+
+        .lightbox-next::after {
+            content: '';
+            display: block;
+            width: 14px;
+            height: 14px;
+            border-right: 2px solid #202020;
+            border-top: 2px solid #202020;
+            transform: rotate(45deg);
+            margin-right: 4px;
+        }
+
+        .lightbox-prev {
+            left: max(10px, calc(50% - 540px));
+        }
+
+        .lightbox-next {
+            right: max(10px, calc(50% - 540px));
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 834px) {
+            body {
+                font-size: 18px;
+            }
+
+            .biography p {
+                font-size: 13px;
+                line-height: 18px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            body {
+                font-size: 16px;
+            }
+
+            .biography p {
+                font-size: 12px;
+                line-height: 16px;
+            }
+        }
+
+        /* Desktop: 5 thumbnails visible */
+        @media (min-width: 1024px) {
+            .gallery-item {
+                opacity: 1;
+            }
+        }
+
+        /* Tablet: 3 thumbnails, rightmost at 40% */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            body {
+                padding-left: 84px;
+                padding-right: 84px;
+            }
+
+            .biography p {
+                max-width: 471px;
+            }
+
+            .gallery-item {
+                opacity: 1;
+                transition: opacity 0.3s;
+            }
+
+            .gallery-item.fade {
+                opacity: 0.4;
+            }
+        }
+
+        /* Mobile: 1 thumbnail, second at 40% */
+        @media (max-width: 767px) {
+            body {
+                padding-left: 36px;
+                padding-right: 36px;
+            }
+
+            .biography p {
+                max-width: 321px;
+            }
+
+            .gallery-item {
+                opacity: 1;
+                transition: opacity 0.3s;
+            }
+
+            .gallery-item.fade {
+                opacity: 0.4;
+            }
+
+            .lightbox.active {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .lightbox-prev,
+            .lightbox-next {
+                position: static;
+                transform: none;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                width: 34px;
+                height: 34px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .lightbox-nav-mobile {
+                display: flex;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <span class="name">Brandon Quintin</span>
+            <span class="title">Designer</span>
+        </div>
+        <div class="header-right">
+            <a href="mailto:brandonmquintin@gmail.com">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="accordion-item">
+            <div class="accordion-header" data-section="biography">
+                Biography<span class="accordion-toggle">+</span>
+            </div>
+            <div class="accordion-content biography" id="biography">
+                <p>Born and raised in Vermont, Virginia is now my home. I've worked at a magazine, at a history museum, and at a real estate brokerage. Design is what I do best; but in my heart I am, and will always be a <em>generalist</em>. When I'm not designing, I'm working on saving American civil society with <a href="https://guildehall.com" target="_blank">GuildeHall</a>.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" data-section="book-design">
+                Book Design<span class="accordion-toggle">+</span>
+            </div>
+            <div class="accordion-content" id="book-design">
+                <div class="gallery" data-visible-desktop="5" data-visible-tablet="3" data-visible-mobile="1">
+                    <div class="gallery-track">
+                        <div class="gallery-item" data-src="Book Design/1.jpg"><img src="Book Design/1.jpg" alt="Book Design 1"></div>
+                        <div class="gallery-item" data-src="Book Design/2.jpg"><img src="Book Design/2.jpg" alt="Book Design 2"></div>
+                        <div class="gallery-item" data-src="Book Design/3.jpg"><img src="Book Design/3.jpg" alt="Book Design 3"></div>
+                        <div class="gallery-item" data-src="Book Design/4.jpg"><img src="Book Design/4.jpg" alt="Book Design 4"></div>
+                        <div class="gallery-item" data-src="Book Design/5.jpg"><img src="Book Design/5.jpg" alt="Book Design 5"></div>
+                        <div class="gallery-item" data-src="Book Design/6.jpg"><img src="Book Design/6.jpg" alt="Book Design 6"></div>
+                        <div class="gallery-item" data-src="Book Design/7.jpg"><img src="Book Design/7.jpg" alt="Book Design 7"></div>
+                        <div class="gallery-item" data-src="Book Design/8.jpg"><img src="Book Design/8.jpg" alt="Book Design 8"></div>
+                        <div class="gallery-item" data-src="Book Design/9.jpg"><img src="Book Design/9.jpg" alt="Book Design 9"></div>
+                        <div class="gallery-item" data-src="Book Design/10.jpg"><img src="Book Design/10.jpg" alt="Book Design 10"></div>
+                        <div class="gallery-item" data-src="Book Design/11.jpg"><img src="Book Design/11.jpg" alt="Book Design 11"></div>
+                        <div class="gallery-item" data-src="Book Design/12.jpg"><img src="Book Design/12.jpg" alt="Book Design 12"></div>
+                        <div class="gallery-item" data-src="Book Design/13.png"><img src="Book Design/13.png" alt="Book Design 13"></div>
+                    </div>
+                    <div class="gallery-nav">
+                        <button class="prev">&lt;</button>
+                        <button class="next">&gt;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" data-section="web-design">
+                Web Design<span class="accordion-toggle">+</span>
+            </div>
+            <div class="accordion-content" id="web-design">
+                <div class="gallery" data-visible-desktop="5" data-visible-tablet="3" data-visible-mobile="1">
+                    <div class="gallery-track">
+                        <div class="gallery-item" data-src="Web Design/1.png"><img src="Web Design/1.png" alt="Web Design 1"></div>
+                        <div class="gallery-item" data-src="Web Design/2.png"><img src="Web Design/2.png" alt="Web Design 2"></div>
+                        <div class="gallery-item" data-src="Web Design/3.png"><img src="Web Design/3.png" alt="Web Design 3"></div>
+                        <div class="gallery-item" data-src="Web Design/4.png"><img src="Web Design/4.png" alt="Web Design 4"></div>
+                        <div class="gallery-item" data-src="Web Design/5.png"><img src="Web Design/5.png" alt="Web Design 5"></div>
+                        <div class="gallery-item" data-src="Web Design/6.png"><img src="Web Design/6.png" alt="Web Design 6"></div>
+                        <div class="gallery-item" data-src="Web Design/7.png"><img src="Web Design/7.png" alt="Web Design 7"></div>
+                    </div>
+                    <div class="gallery-nav">
+                        <button class="prev">&lt;</button>
+                        <button class="next">&gt;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" data-section="graphic-design">
+                Graphic Design<span class="accordion-toggle">+</span>
+            </div>
+            <div class="accordion-content" id="graphic-design">
+                <div class="gallery" data-visible-desktop="5" data-visible-tablet="3" data-visible-mobile="1">
+                    <div class="gallery-track">
+                        <div class="gallery-item" data-src="Graphic Design/1.jpg"><img src="Graphic Design/1.jpg" alt="Graphic Design 1"></div>
+                        <div class="gallery-item" data-src="Graphic Design/2.png"><img src="Graphic Design/2.png" alt="Graphic Design 2"></div>
+                        <div class="gallery-item" data-src="Graphic Design/3.png"><img src="Graphic Design/3.png" alt="Graphic Design 3"></div>
+                        <div class="gallery-item" data-src="Graphic Design/4.png"><img src="Graphic Design/4.png" alt="Graphic Design 4"></div>
+                        <div class="gallery-item" data-src="Graphic Design/5.png"><img src="Graphic Design/5.png" alt="Graphic Design 5"></div>
+                        <div class="gallery-item" data-src="Graphic Design/6.png"><img src="Graphic Design/6.png" alt="Graphic Design 6"></div>
+                        <div class="gallery-item" data-src="Graphic Design/7.png"><img src="Graphic Design/7.png" alt="Graphic Design 7"></div>
+                        <div class="gallery-item" data-src="Graphic Design/8.png"><img src="Graphic Design/8.png" alt="Graphic Design 8"></div>
+                        <div class="gallery-item" data-src="Graphic Design/9.png"><img src="Graphic Design/9.png" alt="Graphic Design 9"></div>
+                        <div class="gallery-item" data-src="Graphic Design/10.png"><img src="Graphic Design/10.png" alt="Graphic Design 10"></div>
+                        <div class="gallery-item" data-src="Graphic Design/11.png"><img src="Graphic Design/11.png" alt="Graphic Design 11"></div>
+                        <div class="gallery-item" data-src="Graphic Design/12.png"><img src="Graphic Design/12.png" alt="Graphic Design 12"></div>
+                        <div class="gallery-item" data-src="Graphic Design/13.png"><img src="Graphic Design/13.png" alt="Graphic Design 13"></div>
+                        <div class="gallery-item" data-src="Graphic Design/14.png"><img src="Graphic Design/14.png" alt="Graphic Design 14"></div>
+                        <div class="gallery-item" data-src="Graphic Design/15.png"><img src="Graphic Design/15.png" alt="Graphic Design 15"></div>
+                    </div>
+                    <div class="gallery-nav">
+                        <button class="prev">&lt;</button>
+                        <button class="next">&gt;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" data-section="illustration">
+                Illustration<span class="accordion-toggle">+</span>
+            </div>
+            <div class="accordion-content" id="illustration">
+                <div class="gallery" data-visible-desktop="5" data-visible-tablet="3" data-visible-mobile="1">
+                    <div class="gallery-track">
+                        <div class="gallery-item" data-src="Illustration/1.png"><img src="Illustration/1.png" alt="Illustration 1"></div>
+                        <div class="gallery-item" data-src="Illustration/2.jpg"><img src="Illustration/2.jpg" alt="Illustration 2"></div>
+                        <div class="gallery-item" data-src="Illustration/3.jpg"><img src="Illustration/3.jpg" alt="Illustration 3"></div>
+                        <div class="gallery-item" data-src="Illustration/4.jpg"><img src="Illustration/4.jpg" alt="Illustration 4"></div>
+                        <div class="gallery-item" data-src="Illustration/5.jpg"><img src="Illustration/5.jpg" alt="Illustration 5"></div>
+                        <div class="gallery-item" data-src="Illustration/6.jpg"><img src="Illustration/6.jpg" alt="Illustration 6"></div>
+                        <div class="gallery-item" data-src="Illustration/7.jpg"><img src="Illustration/7.jpg" alt="Illustration 7"></div>
+                        <div class="gallery-item" data-src="Illustration/8.jpg"><img src="Illustration/8.jpg" alt="Illustration 8"></div>
+                        <div class="gallery-item" data-src="Illustration/9.jpg"><img src="Illustration/9.jpg" alt="Illustration 9"></div>
+                        <div class="gallery-item" data-src="Illustration/10.jpeg"><img src="Illustration/10.jpeg" alt="Illustration 10"></div>
+                    </div>
+                    <div class="gallery-nav">
+                        <button class="prev">&lt;</button>
+                        <button class="next">&gt;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" data-section="guildehall" onclick="window.open('https://guildehall.com', '_blank'); event.stopPropagation();">
+                GuildeHall<span class="accordion-toggle">+</span>
+            </div>
+        </div>
+    </main>
+
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-container">
+            <button class="lightbox-close">&times;</button>
+            <img src="" alt="Full size image">
+        </div>
+        <div class="lightbox-nav-mobile">
+            <button class="lightbox-prev">&lt;</button>
+            <button class="lightbox-next">&gt;</button>
+        </div>
+    </div>
+
+    <script>
+        // Accordion
+        const headers = document.querySelectorAll('.accordion-header');
+        headers.forEach(header => {
+            if (header.dataset.section === 'guildehall') return;
+            header.addEventListener('click', () => {
+                const section = header.dataset.section;
+                const content = document.getElementById(section);
+                const isActive = content.classList.contains('active');
+
+                // Close all
+                document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.accordion-toggle').forEach(t => t.textContent = '+');
+
+                // Open clicked if it wasn't active
+                if (!isActive) {
+                    content.classList.add('active');
+                    header.querySelector('.accordion-toggle').textContent = '-';
+                    // Update fade on gallery open
+                    const gallery = content.querySelector('.gallery');
+                    if (gallery) updateFade(gallery);
+                }
+            });
+        });
+
+        // Gallery carousel
+        function getVisibleCount() {
+            const w = window.innerWidth;
+            if (w >= 1024) return 5;
+            if (w >= 768) return 3;
+            return 1;
+        }
+
+        function updateFade(gallery) {
+            const items = gallery.querySelectorAll('.gallery-item');
+            const visible = getVisibleCount();
+            const offset = parseInt(gallery.dataset.offset || 0);
+
+            items.forEach((item, i) => {
+                item.classList.remove('fade');
+                if (window.innerWidth < 1024) {
+                    // Fade the last visible item
+                    if (i === offset + visible) {
+                        item.classList.add('fade');
+                    }
+                }
+            });
+        }
+
+        document.querySelectorAll('.gallery').forEach(gallery => {
+            const track = gallery.querySelector('.gallery-track');
+            const items = gallery.querySelectorAll('.gallery-item');
+            const prevBtn = gallery.querySelector('.prev');
+            const nextBtn = gallery.querySelector('.next');
+            let offset = 0;
+            gallery.dataset.offset = 0;
+
+            function updateCarousel() {
+                const itemWidth = 200;
+                const gap = 16;
+                const shift = offset * (itemWidth + gap);
+                track.style.transform = `translateX(-${shift}px)`;
+                gallery.dataset.offset = offset;
+                updateFade(gallery);
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (offset > 0) {
+                    offset--;
+                    updateCarousel();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                const visible = getVisibleCount();
+                const max = items.length - visible;
+                if (offset < max) {
+                    offset++;
+                    updateCarousel();
+                }
+            });
+        });
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const lightboxClose = lightbox.querySelector('.lightbox-close');
+        const lightboxPrev = lightbox.querySelector('.lightbox-prev');
+        const lightboxNext = lightbox.querySelector('.lightbox-next');
+        let currentGalleryItems = [];
+        let currentLightboxIndex = 0;
+        let currentGalleryId = '';
+        const lightboxContainer = lightbox.querySelector('.lightbox-container');
+
+        function updateLightboxPadding() {
+            if (currentGalleryId === 'book-design') {
+                lightboxContainer.classList.add('no-padding');
+            } else {
+                lightboxContainer.classList.remove('no-padding');
+            }
+        }
+
+        function openLightbox(items, index, galleryId) {
+            currentGalleryItems = items;
+            currentLightboxIndex = index;
+            currentGalleryId = galleryId;
+            lightboxImg.src = currentGalleryItems[currentLightboxIndex].dataset.src;
+            updateLightboxPadding();
+            lightbox.classList.add('active');
+        }
+
+        document.querySelectorAll('.gallery').forEach(gallery => {
+            const items = Array.from(gallery.querySelectorAll('.gallery-item'));
+            const galleryId = gallery.closest('.accordion-content').id;
+            items.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    openLightbox(items, index, galleryId);
+                });
+            });
+        });
+
+        lightboxPrev.addEventListener('click', () => {
+            if (currentLightboxIndex > 0) {
+                currentLightboxIndex--;
+                lightboxImg.src = currentGalleryItems[currentLightboxIndex].dataset.src;
+            }
+        });
+
+        lightboxNext.addEventListener('click', () => {
+            if (currentLightboxIndex < currentGalleryItems.length - 1) {
+                currentLightboxIndex++;
+                lightboxImg.src = currentGalleryItems[currentLightboxIndex].dataset.src;
+            }
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            lightboxImg.src = '';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                lightboxImg.src = '';
+            }
+        });
+
+        // Update fade on resize
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('.gallery').forEach(updateFade);
+        });
+    </script>
+</body>
+</html>
