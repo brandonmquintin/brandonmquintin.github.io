@@ -462,7 +462,7 @@
                         <div class="gallery-item" data-src="Graphic Design/7.png"><img src="Graphic Design/7.png" alt="Graphic Design 7"></div>
                         <div class="gallery-item" data-src="Graphic Design/8.png"><img src="Graphic Design/8.png" alt="Graphic Design 8"></div>
                         <div class="gallery-item" data-src="Graphic Design/9.png"><img src="Graphic Design/9.png" alt="Graphic Design 9"></div>
-                        <div class="gallery-item" data-src="Graphic Design/10.png"><img src="Graphic Design/10.png" alt="Graphic Design 10"></div>
+                        <div class="gallery-item" data-src="Graphic Design/10.jpg"><img src="Graphic Design/10.jpg" alt="Graphic Design 10"></div>
                         <div class="gallery-item" data-src="Graphic Design/11.png"><img src="Graphic Design/11.png" alt="Graphic Design 11"></div>
                         <div class="gallery-item" data-src="Graphic Design/12.png"><img src="Graphic Design/12.png" alt="Graphic Design 12"></div>
                         <div class="gallery-item" data-src="Graphic Design/13.png"><img src="Graphic Design/13.png" alt="Graphic Design 13"></div>
@@ -494,6 +494,25 @@
                         <div class="gallery-item" data-src="Illustration/8.jpg"><img src="Illustration/8.jpg" alt="Illustration 8"></div>
                         <div class="gallery-item" data-src="Illustration/9.jpg"><img src="Illustration/9.jpg" alt="Illustration 9"></div>
                         <div class="gallery-item" data-src="Illustration/10.jpeg"><img src="Illustration/10.jpeg" alt="Illustration 10"></div>
+                    </div>
+                    <div class="gallery-nav">
+                        <button class="prev">&lt;</button>
+                        <button class="next">&gt;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" data-section="film">
+                Film<span class="accordion-toggle">+</span>
+            </div>
+            <div class="accordion-content" id="film">
+                <div class="gallery" data-visible-desktop="5" data-visible-tablet="3" data-visible-mobile="1">
+                    <div class="gallery-track">
+                        <div class="gallery-item" data-href="https://www.youtube.com/watch?v=2xJRzoRAGoo"><img src="Film/1.png" alt="Film 1"></div>
+                        <div class="gallery-item" data-href="https://www.youtube.com/watch?v=SMo-xDTw3e0"><img src="Film/2.png" alt="Film 2"></div>
+                        <div class="gallery-item" data-href="https://www.youtube.com/watch?v=-92fFhVrW4Y"><img src="Film/3.png" alt="Film 3"></div>
                     </div>
                     <div class="gallery-nav">
                         <button class="prev">&lt;</button>
@@ -637,7 +656,11 @@
             const galleryId = gallery.closest('.accordion-content').id;
             items.forEach((item, index) => {
                 item.addEventListener('click', () => {
-                    openLightbox(items, index, galleryId);
+                    if (item.dataset.href) {
+                        window.open(item.dataset.href, '_blank');
+                    } else {
+                        openLightbox(items, index, galleryId);
+                    }
                 });
             });
         });
