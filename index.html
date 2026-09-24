@@ -134,6 +134,13 @@
             padding: 15px;
         }
 
+        /* Full-page screenshots are far taller than they are wide. Shrunk to fit
+           a square they become an unreadable sliver, so show the top instead. */
+        .gallery-item.tall img {
+            object-fit: cover;
+            object-position: top;
+        }
+
         .gallery-item:focus-visible {
             outline: 1px solid #202020;
             outline-offset: 3px;
@@ -264,16 +271,33 @@
             background: transparent;
         }
 
+        /* A tall page scrolls inside the frame, the way the real site does */
+        .lightbox-container.scrollable {
+            display: block;
+            overflow-y: auto;
+            padding: 0;
+            background: #fafafa;
+        }
+
+        .lightbox-container.scrollable img {
+            width: 100%;
+            height: auto;
+            max-width: none;
+            max-height: none;
+            display: block;
+        }
+
         .lightbox-container img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
         }
 
+        /* Fixed to the overlay, not the frame, so it stays put while a tall page scrolls */
         .lightbox-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
+            position: fixed;
+            top: 24px;
+            right: 24px;
             font-family: Palatino, 'Palatino Linotype', 'Book Antiqua', serif;
             font-size: 24px;
             color: #202020;
@@ -498,9 +522,14 @@
             <div class="accordion-content" id="web-design">
                 <div class="gallery" data-visible-desktop="5" data-visible-tablet="3" data-visible-mobile="1">
                     <div class="gallery-track">
-                        <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/guildehall.png" data-title="GuildeHall" data-href="https://guildehall.com"><img src="Web Design/guildehall.png" alt="GuildeHall home page" loading="lazy"></div>
-                        <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/guildehall-network.png" data-title="GuildeHall Network" data-href="https://guildehall.com/network/"><img src="Web Design/guildehall-network.png" alt="GuildeHall Network home page" loading="lazy"></div>
-                        <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/monumental-honor.png" data-title="Monumental Honor" data-href="https://monumentalhonor.org"><img src="Web Design/monumental-honor.png" alt="Monumental Honor home page" loading="lazy"></div>
+                        <div class="gallery-item tall" tabindex="0" role="button" data-src="Web Design/monumental-honor.jpg" data-title="Monumental Honor" data-href="https://monumentalhonor.org"><img src="Web Design/monumental-honor.jpg" alt="Monumental Honor home page" loading="lazy"></div>
+                        <div class="gallery-item tall" tabindex="0" role="button" data-src="Web Design/monumental-honor-recipient.jpg" data-title="Monumental Honor &mdash; Powhatan Beaty" data-href="https://monumentalhonor.org/recipients/powhatan-beaty/"><img src="Web Design/monumental-honor-recipient.jpg" alt="Monumental Honor recipient page for Powhatan Beaty" loading="lazy"></div>
+                        <div class="gallery-item tall" tabindex="0" role="button" data-src="Web Design/monumental-honor-event.jpg" data-title="Monumental Honor &mdash; Legacy Lives Here" data-href="https://monumentalhonor.org/legacy-lives-here/"><img src="Web Design/monumental-honor-event.jpg" alt="Monumental Honor Legacy Lives Here event page" loading="lazy"></div>
+                        <div class="gallery-item tall" tabindex="0" role="button" data-src="Web Design/guildehall.jpg" data-title="GuildeHall" data-href="https://guildehall.com"><img src="Web Design/guildehall.jpg" alt="GuildeHall home page" loading="lazy"></div>
+                        <div class="gallery-item tall" tabindex="0" role="button" data-src="Web Design/guildehall-organizations.jpg" data-title="GuildeHall &mdash; the organizations directory" data-href="https://guildehall.com/organizations/"><img src="Web Design/guildehall-organizations.jpg" alt="GuildeHall organizations directory" loading="lazy"></div>
+                        <div class="gallery-item tall" tabindex="0" role="button" data-src="Web Design/guildehall-venues.jpg" data-title="GuildeHall &mdash; the venue directory" data-href="https://guildehall.com/venues/"><img src="Web Design/guildehall-venues.jpg" alt="GuildeHall venue directory" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/guildehall-network.jpg" data-title="GuildeHall Network &mdash; a guilde&rsquo;s home page" data-href="https://guildehall.com/network/"><img src="Web Design/guildehall-network.jpg" alt="GuildeHall Network home page for a guilde" loading="lazy"></div>
+                        <div class="gallery-item tall" tabindex="0" role="button" data-src="Web Design/guildehall-network-admin.jpg" data-title="GuildeHall Network &mdash; admin dashboard" data-href="https://guildehall.com/network/"><img src="Web Design/guildehall-network-admin.jpg" alt="GuildeHall Network admin dashboard" loading="lazy"></div>
                         <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/widows-sons-lodge.png" data-title="Widow&rsquo;s Sons&rsquo; Lodge No. 60" data-href="https://widowssons60.com"><img src="Web Design/widows-sons-lodge.png" alt="Widow&rsquo;s Sons&rsquo; Lodge No. 60 website" loading="lazy"></div>
                         <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/small-wars-journal.png" data-title="Small Wars Journal"><img src="Web Design/small-wars-journal.png" alt="Small Wars Journal website design" loading="lazy"></div>
                         <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/frontier-thesis-press.png" data-title="Frontier Thesis Press"><img src="Web Design/frontier-thesis-press.png" alt="Frontier Thesis Press home page" loading="lazy"></div>
@@ -598,9 +627,9 @@
     </main>
 
     <div class="lightbox" id="lightbox">
+        <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
         <div class="lightbox-stage">
             <div class="lightbox-container">
-                <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
                 <img src="" alt="">
             </div>
             <p class="lightbox-caption"></p>
@@ -732,6 +761,10 @@
             const item = currentGalleryItems[index];
             lightboxImg.src = item.dataset.src;
             lightboxImg.alt = item.querySelector('img').alt;
+
+            // Tall pages fill the frame's width and scroll; everything else fits
+            lightboxContainer.classList.toggle('scrollable', item.classList.contains('tall'));
+            lightboxContainer.scrollTop = 0;
 
             const title = item.dataset.title || '';
             const href = item.dataset.href || '';
