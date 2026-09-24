@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brandon Quintin - Designer</title>
+    <meta name="description" content="Brandon Quintin is a designer in Virginia working in book design, web design, graphic design, illustration, and film.">
+    <link rel="canonical" href="https://brandonquintin.com/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='50' font-family='Palatino,Georgia,serif' font-size='86' fill='%23202020' text-anchor='middle' dominant-baseline='central'>B</text></svg>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://brandonquintin.com/">
+    <meta property="og:title" content="Brandon Quintin - Designer">
+    <meta property="og:description" content="Brandon Quintin is a designer in Virginia working in book design, web design, graphic design, illustration, and film.">
+    <meta name="twitter:card" content="summary">
     <style>
         * {
             margin: 0;
@@ -51,6 +59,19 @@
         .accordion-header {
             cursor: pointer;
             user-select: none;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            font: inherit;
+            padding: 0;
+        }
+
+        .accordion-header:focus-visible {
+            outline: 1px solid #202020;
+            outline-offset: 4px;
         }
 
         .accordion-item + .accordion-item {
@@ -113,6 +134,11 @@
             padding: 15px;
         }
 
+        .gallery-item:focus-visible {
+            outline: 1px solid #202020;
+            outline-offset: 3px;
+        }
+
         .gallery-item img {
             width: 100%;
             height: 100%;
@@ -169,6 +195,15 @@
             background: #f5f5f5;
         }
 
+        .gallery-nav button:disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+
+        .gallery-nav button:disabled:hover {
+            background: none;
+        }
+
         .lightbox {
             display: none;
             position: fixed;
@@ -188,10 +223,33 @@
             display: flex;
         }
 
+        .lightbox-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-caption {
+            margin-top: 14px;
+            font-size: 15px;
+            line-height: 20px;
+            text-align: center;
+            max-width: min(1000px, 90vw, 78vh);
+        }
+
+        .lightbox-caption a {
+            color: #202020;
+            text-decoration: underline;
+        }
+
+        .lightbox-caption .site {
+            white-space: nowrap;
+        }
+
         .lightbox-container {
             position: relative;
-            width: min(1000px, 90vw, 90vh);
-            height: min(1000px, 90vw, 90vh);
+            width: min(1000px, 90vw, 78vh);
+            height: min(1000px, 90vw, 78vh);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -275,6 +333,14 @@
         .lightbox-prev:hover,
         .lightbox-next:hover {
             opacity: 0.7;
+        }
+
+        .lightbox-prev:disabled,
+        .lightbox-next:disabled,
+        .lightbox-prev:disabled:hover,
+        .lightbox-next:disabled:hover {
+            opacity: 0.25;
+            cursor: default;
         }
 
         @media (max-width: 834px) {
@@ -386,167 +452,169 @@
 
     <main>
         <div class="accordion-item">
-            <div class="accordion-header" data-section="biography">
+            <button type="button" class="accordion-header" data-section="biography" aria-expanded="false" aria-controls="biography">
                 Biography<span class="accordion-toggle">+</span>
-            </div>
+            </button>
             <div class="accordion-content biography" id="biography">
-                <p>Born and raised in Vermont, Virginia is now my home. I've worked at a magazine, at a history museum, and at a real estate brokerage. Design is what I do best; but in my heart I am, and will always be a <em>generalist</em>. When I'm not designing, I'm working on saving American civil society with <a href="https://guildehall.com" target="_blank">GuildeHall</a>.</p>
+                <p>Born and raised in Vermont, Virginia is now my home. I've worked at a magazine, at a history museum, and at a real estate brokerage. Design is what I do best; but in my heart I am, and will always be a <em>generalist</em>. Since mid-2026 I've been serving as the volunteer creative director for <a href="https://monumentalhonor.org" target="_blank" rel="noopener">Monumental Honor</a>. When I'm not designing, I'm working on saving American civil society with <a href="https://guildehall.com" target="_blank" rel="noopener">GuildeHall</a>.</p>
             </div>
         </div>
 
         <div class="accordion-item">
-            <div class="accordion-header" data-section="book-design">
+            <button type="button" class="accordion-header" data-section="book-design" aria-expanded="false" aria-controls="book-design">
                 Book Design<span class="accordion-toggle">+</span>
-            </div>
+            </button>
             <div class="accordion-content" id="book-design">
                 <div class="gallery" data-visible-desktop="5" data-visible-tablet="3" data-visible-mobile="1">
                     <div class="gallery-track">
-                        <div class="gallery-item" data-src="Book Design/1.jpg"><img src="Book Design/1.jpg" alt="Book Design 1"></div>
-                        <div class="gallery-item" data-src="Book Design/2.jpg"><img src="Book Design/2.jpg" alt="Book Design 2"></div>
-                        <div class="gallery-item" data-src="Book Design/3.jpg"><img src="Book Design/3.jpg" alt="Book Design 3"></div>
-                        <div class="gallery-item" data-src="Book Design/4.jpg"><img src="Book Design/4.jpg" alt="Book Design 4"></div>
-                        <div class="gallery-item" data-src="Book Design/5.jpg"><img src="Book Design/5.jpg" alt="Book Design 5"></div>
-                        <div class="gallery-item" data-src="Book Design/6.jpg"><img src="Book Design/6.jpg" alt="Book Design 6"></div>
-                        <div class="gallery-item" data-src="Book Design/7.jpg"><img src="Book Design/7.jpg" alt="Book Design 7"></div>
-                        <div class="gallery-item" data-src="Book Design/8.jpg"><img src="Book Design/8.jpg" alt="Book Design 8"></div>
-                        <div class="gallery-item" data-src="Book Design/9.jpg"><img src="Book Design/9.jpg" alt="Book Design 9"></div>
-                        <div class="gallery-item" data-src="Book Design/10.jpg"><img src="Book Design/10.jpg" alt="Book Design 10"></div>
-                        <div class="gallery-item" data-src="Book Design/11.jpg"><img src="Book Design/11.jpg" alt="Book Design 11"></div>
-                        <div class="gallery-item" data-src="Book Design/12.jpg"><img src="Book Design/12.jpg" alt="Book Design 12"></div>
-                        <div class="gallery-item" data-src="Book Design/13.jpg"><img src="Book Design/13.jpg" alt="Book Design 13"></div>
-                        <div class="gallery-item" data-src="Book Design/14.png"><img src="Book Design/14.png" alt="Book Design 14"></div>
-                        <div class="gallery-item" data-src="Book Design/15.jpg"><img src="Book Design/15.jpg" alt="Book Design 15"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/1.jpg"><img src="Book Design/1.jpg" loading="lazy" alt="Book design 1"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/2.jpg"><img src="Book Design/2.jpg" loading="lazy" alt="Book design 2"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/3.jpg"><img src="Book Design/3.jpg" loading="lazy" alt="Book design 3"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/4.jpg"><img src="Book Design/4.jpg" loading="lazy" alt="Book design 4"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/5.jpg"><img src="Book Design/5.jpg" loading="lazy" alt="Book design 5"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/6.jpg"><img src="Book Design/6.jpg" loading="lazy" alt="Book design 6"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/7.jpg"><img src="Book Design/7.jpg" loading="lazy" alt="Book design 7"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/8.jpg"><img src="Book Design/8.jpg" loading="lazy" alt="Book design 8"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/9.jpg"><img src="Book Design/9.jpg" loading="lazy" alt="Book design 9"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/10.jpg"><img src="Book Design/10.jpg" loading="lazy" alt="Book design 10"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/11.jpg"><img src="Book Design/11.jpg" loading="lazy" alt="Book design 11"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/12.jpg"><img src="Book Design/12.jpg" loading="lazy" alt="Book design 12"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/13.jpg"><img src="Book Design/13.jpg" loading="lazy" alt="Book design 13"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/14.png"><img src="Book Design/14.png" loading="lazy" alt="Book design 14"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Book Design/15.jpg"><img src="Book Design/15.jpg" loading="lazy" alt="Book design 15"></div>
                     </div>
                     <div class="gallery-nav">
-                        <button class="prev">&lt;</button>
-                        <button class="next">&gt;</button>
+                        <button type="button" class="prev" aria-label="Previous">&lt;</button>
+                        <button type="button" class="next" aria-label="Next">&gt;</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
-            <div class="accordion-header" data-section="web-design">
+            <button type="button" class="accordion-header" data-section="web-design" aria-expanded="false" aria-controls="web-design">
                 Web Design<span class="accordion-toggle">+</span>
-            </div>
+            </button>
             <div class="accordion-content" id="web-design">
                 <div class="gallery" data-visible-desktop="5" data-visible-tablet="3" data-visible-mobile="1">
                     <div class="gallery-track">
-                        <div class="gallery-item" data-src="Web Design/1.png"><img src="Web Design/1.png" alt="Web Design 1"></div>
-                        <div class="gallery-item" data-src="Web Design/2.png"><img src="Web Design/2.png" alt="Web Design 2"></div>
-                        <div class="gallery-item" data-src="Web Design/3.png"><img src="Web Design/3.png" alt="Web Design 3"></div>
-                        <div class="gallery-item" data-src="Web Design/4.png"><img src="Web Design/4.png" alt="Web Design 4"></div>
-                        <div class="gallery-item" data-src="Web Design/5.png"><img src="Web Design/5.png" alt="Web Design 5"></div>
-                        <div class="gallery-item" data-src="Web Design/6.png"><img src="Web Design/6.png" alt="Web Design 6"></div>
-                        <div class="gallery-item" data-src="Web Design/7.png"><img src="Web Design/7.png" alt="Web Design 7"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/guildehall.png" data-title="GuildeHall" data-href="https://guildehall.com"><img src="Web Design/guildehall.png" alt="GuildeHall home page" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/guildehall-network.png" data-title="GuildeHall Network" data-href="https://guildehall.com/network/"><img src="Web Design/guildehall-network.png" alt="GuildeHall Network home page" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/monumental-honor.png" data-title="Monumental Honor" data-href="https://monumentalhonor.org"><img src="Web Design/monumental-honor.png" alt="Monumental Honor home page" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/widows-sons-lodge.png" data-title="Widow&rsquo;s Sons&rsquo; Lodge No. 60" data-href="https://widowssons60.com"><img src="Web Design/widows-sons-lodge.png" alt="Widow&rsquo;s Sons&rsquo; Lodge No. 60 website" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/small-wars-journal.png" data-title="Small Wars Journal"><img src="Web Design/small-wars-journal.png" alt="Small Wars Journal website design" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/frontier-thesis-press.png" data-title="Frontier Thesis Press"><img src="Web Design/frontier-thesis-press.png" alt="Frontier Thesis Press home page" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Web Design/frontier-thesis-press-book.png" data-title="Frontier Thesis Press"><img src="Web Design/frontier-thesis-press-book.png" alt="Frontier Thesis Press product page" loading="lazy"></div>
                     </div>
                     <div class="gallery-nav">
-                        <button class="prev">&lt;</button>
-                        <button class="next">&gt;</button>
+                        <button type="button" class="prev" aria-label="Previous">&lt;</button>
+                        <button type="button" class="next" aria-label="Next">&gt;</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
-            <div class="accordion-header" data-section="graphic-design">
+            <button type="button" class="accordion-header" data-section="graphic-design" aria-expanded="false" aria-controls="graphic-design">
                 Graphic Design<span class="accordion-toggle">+</span>
-            </div>
+            </button>
             <div class="accordion-content" id="graphic-design">
                 <div class="gallery" data-visible-desktop="5" data-visible-tablet="3" data-visible-mobile="1">
                     <div class="gallery-track">
-                        <div class="gallery-item" data-src="Graphic Design/1.jpg"><img src="Graphic Design/1.jpg" alt="Graphic Design 1"></div>
-                        <div class="gallery-item" data-src="Graphic Design/2.png"><img src="Graphic Design/2.png" alt="Graphic Design 2"></div>
-                        <div class="gallery-item" data-src="Graphic Design/3.png"><img src="Graphic Design/3.png" alt="Graphic Design 3"></div>
-                        <div class="gallery-item" data-src="Graphic Design/4.png"><img src="Graphic Design/4.png" alt="Graphic Design 4"></div>
-                        <div class="gallery-item" data-src="Graphic Design/5.png"><img src="Graphic Design/5.png" alt="Graphic Design 5"></div>
-                        <div class="gallery-item" data-src="Graphic Design/6.png"><img src="Graphic Design/6.png" alt="Graphic Design 6"></div>
-                        <div class="gallery-item" data-src="Graphic Design/7.png"><img src="Graphic Design/7.png" alt="Graphic Design 7"></div>
-                        <div class="gallery-item" data-src="Graphic Design/8.png"><img src="Graphic Design/8.png" alt="Graphic Design 8"></div>
-                        <div class="gallery-item" data-src="Graphic Design/9.png"><img src="Graphic Design/9.png" alt="Graphic Design 9"></div>
-                        <div class="gallery-item" data-src="Graphic Design/10.jpg"><img src="Graphic Design/10.jpg" alt="Graphic Design 10"></div>
-                        <div class="gallery-item" data-src="Graphic Design/11.png"><img src="Graphic Design/11.png" alt="Graphic Design 11"></div>
-                        <div class="gallery-item" data-src="Graphic Design/12.png"><img src="Graphic Design/12.png" alt="Graphic Design 12"></div>
-                        <div class="gallery-item" data-src="Graphic Design/13.png"><img src="Graphic Design/13.png" alt="Graphic Design 13"></div>
-                        <div class="gallery-item" data-src="Graphic Design/14.png"><img src="Graphic Design/14.png" alt="Graphic Design 14"></div>
-                        <div class="gallery-item" data-src="Graphic Design/15.png"><img src="Graphic Design/15.png" alt="Graphic Design 15"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/guildehall-logo.png" data-title="GuildeHall"><img src="Graphic Design/guildehall-logo.png" alt="GuildeHall logo" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/frontier-thesis-press-logo.png" data-title="Frontier Thesis Press"><img src="Graphic Design/frontier-thesis-press-logo.png" alt="Frontier Thesis Press logo" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/heritage-museum-logo.png" data-title="The Heritage Museum"><img src="Graphic Design/heritage-museum-logo.png" alt="The Heritage Museum logo" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/small-wars-journal-logo.png" data-title="Small Wars Journal"><img src="Graphic Design/small-wars-journal-logo.png" alt="Small Wars Journal logo" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/small-wars-journal-brand.png" data-title="Small Wars Journal brand guide"><img src="Graphic Design/small-wars-journal-brand.png" alt="Small Wars Journal brand guide" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/armed-forces-command-chart.png" data-title="Armed forces high command chart"><img src="Graphic Design/armed-forces-command-chart.png" alt="Chart of the high command of the United States armed forces" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/combatant-commands-map.png" data-title="Combatant commands map"><img src="Graphic Design/combatant-commands-map.png" alt="Map of the United States combatant commands" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/nest-realty-design-guide.png" data-title="Nest Realty branding and design guide"><img src="Graphic Design/nest-realty-design-guide.png" alt="Nest Realty agent branding and design guide" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/rocktown-history.png" data-title="Rocktown History"><img src="Graphic Design/rocktown-history.png" alt="Rocktown History covers" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/quintin-media-cards.jpg" data-title="Quintin Media Company"><img src="Graphic Design/quintin-media-cards.jpg" alt="Quintin Media Company business cards" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/washington-bible-poster.png" data-title="The Feast of St. John the Baptist"><img src="Graphic Design/washington-bible-poster.png" alt="Poster for the Feast of St. John the Baptist" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/knights-of-the-capital-poster.png" data-title="Knights of the Capital"><img src="Graphic Design/knights-of-the-capital-poster.png" alt="Knights of the Capital poster" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/widows-sons-225th-poster.png" data-title="Widow&rsquo;s Sons&rsquo; 225th anniversary"><img src="Graphic Design/widows-sons-225th-poster.png" alt="Widow&rsquo;s Sons&rsquo; Lodge No. 60 225th anniversary poster" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/heritage-museum-annual-fund.png" data-title="The Heritage Museum annual fund"><img src="Graphic Design/heritage-museum-annual-fund.png" alt="The Heritage Museum annual fund poster" loading="lazy"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Graphic Design/owl-creek-bridge-poster.png" data-title="An Occurrence at Owl Creek Bridge"><img src="Graphic Design/owl-creek-bridge-poster.png" alt="An Occurrence at Owl Creek Bridge poster" loading="lazy"></div>
                     </div>
                     <div class="gallery-nav">
-                        <button class="prev">&lt;</button>
-                        <button class="next">&gt;</button>
+                        <button type="button" class="prev" aria-label="Previous">&lt;</button>
+                        <button type="button" class="next" aria-label="Next">&gt;</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
-            <div class="accordion-header" data-section="illustration">
+            <button type="button" class="accordion-header" data-section="illustration" aria-expanded="false" aria-controls="illustration">
                 Illustration<span class="accordion-toggle">+</span>
-            </div>
+            </button>
             <div class="accordion-content" id="illustration">
                 <div class="gallery" data-visible-desktop="5" data-visible-tablet="3" data-visible-mobile="1">
                     <div class="gallery-track">
-                        <div class="gallery-item" data-src="Illustration/1.png"><img src="Illustration/1.png" alt="Illustration 1"></div>
-                        <div class="gallery-item" data-src="Illustration/2.jpg"><img src="Illustration/2.jpg" alt="Illustration 2"></div>
-                        <div class="gallery-item" data-src="Illustration/3.jpg"><img src="Illustration/3.jpg" alt="Illustration 3"></div>
-                        <div class="gallery-item" data-src="Illustration/4.jpg"><img src="Illustration/4.jpg" alt="Illustration 4"></div>
-                        <div class="gallery-item" data-src="Illustration/5.jpg"><img src="Illustration/5.jpg" alt="Illustration 5"></div>
-                        <div class="gallery-item" data-src="Illustration/6.jpg"><img src="Illustration/6.jpg" alt="Illustration 6"></div>
-                        <div class="gallery-item" data-src="Illustration/7.jpg"><img src="Illustration/7.jpg" alt="Illustration 7"></div>
-                        <div class="gallery-item" data-src="Illustration/8.jpg"><img src="Illustration/8.jpg" alt="Illustration 8"></div>
-                        <div class="gallery-item" data-src="Illustration/9.jpg"><img src="Illustration/9.jpg" alt="Illustration 9"></div>
-                        <div class="gallery-item" data-src="Illustration/10.jpeg"><img src="Illustration/10.jpeg" alt="Illustration 10"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Illustration/1.png"><img src="Illustration/1.png" loading="lazy" alt="Illustration 1"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Illustration/2.jpg"><img src="Illustration/2.jpg" loading="lazy" alt="Illustration 2"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Illustration/3.jpg"><img src="Illustration/3.jpg" loading="lazy" alt="Illustration 3"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Illustration/4.jpg"><img src="Illustration/4.jpg" loading="lazy" alt="Illustration 4"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Illustration/5.jpg"><img src="Illustration/5.jpg" loading="lazy" alt="Illustration 5"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Illustration/6.jpg"><img src="Illustration/6.jpg" loading="lazy" alt="Illustration 6"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Illustration/7.jpg"><img src="Illustration/7.jpg" loading="lazy" alt="Illustration 7"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Illustration/8.jpg"><img src="Illustration/8.jpg" loading="lazy" alt="Illustration 8"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Illustration/9.jpg"><img src="Illustration/9.jpg" loading="lazy" alt="Illustration 9"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-src="Illustration/10.jpeg"><img src="Illustration/10.jpeg" loading="lazy" alt="Illustration 10"></div>
                     </div>
                     <div class="gallery-nav">
-                        <button class="prev">&lt;</button>
-                        <button class="next">&gt;</button>
+                        <button type="button" class="prev" aria-label="Previous">&lt;</button>
+                        <button type="button" class="next" aria-label="Next">&gt;</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
-            <div class="accordion-header" data-section="film">
+            <button type="button" class="accordion-header" data-section="film" aria-expanded="false" aria-controls="film">
                 Film<span class="accordion-toggle">+</span>
-            </div>
+            </button>
             <div class="accordion-content" id="film">
                 <div class="gallery" data-visible-desktop="5" data-visible-tablet="3" data-visible-mobile="1">
                     <div class="gallery-track">
-                        <div class="gallery-item" data-href="https://www.youtube.com/watch?v=2xJRzoRAGoo"><img src="Film/1.png" alt="Film 1"></div>
-                        <div class="gallery-item" data-href="https://www.youtube.com/watch?v=SMo-xDTw3e0"><img src="Film/2.png" alt="Film 2"></div>
-                        <div class="gallery-item" data-href="https://www.youtube.com/watch?v=-92fFhVrW4Y"><img src="Film/3.png" alt="Film 3"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-href="https://www.youtube.com/watch?v=2xJRzoRAGoo" data-title="Run the Gauntlet &mdash; teaser trailer"><img src="Film/1.png" loading="lazy" alt="Run the Gauntlet teaser trailer"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-href="https://www.youtube.com/watch?v=SMo-xDTw3e0" data-title="Run the Gauntlet &mdash; second teaser trailer"><img src="Film/2.png" loading="lazy" alt="Run the Gauntlet second teaser trailer"></div>
+                        <div class="gallery-item" tabindex="0" role="button" data-href="https://www.youtube.com/watch?v=-92fFhVrW4Y" data-title="Run the Gauntlet"><img src="Film/3.png" loading="lazy" alt="Run the Gauntlet"></div>
                     </div>
                     <div class="gallery-nav">
-                        <button class="prev">&lt;</button>
-                        <button class="next">&gt;</button>
+                        <button type="button" class="prev" aria-label="Previous">&lt;</button>
+                        <button type="button" class="next" aria-label="Next">&gt;</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
-            <div class="accordion-header" data-section="guildehall" onclick="window.open('https://guildehall.com', '_blank'); event.stopPropagation();">
-                GuildeHall<span class="accordion-toggle">+</span>
-            </div>
+            <a class="accordion-header" href="https://guildehall.com" target="_blank" rel="noopener">
+                GuildeHall<span class="accordion-toggle">&#8599;</span>
+            </a>
         </div>
     </main>
 
     <div class="lightbox" id="lightbox">
-        <div class="lightbox-container">
-            <button class="lightbox-close">&times;</button>
-            <img src="" alt="Full size image">
+        <div class="lightbox-stage">
+            <div class="lightbox-container">
+                <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+                <img src="" alt="">
+            </div>
+            <p class="lightbox-caption"></p>
         </div>
         <div class="lightbox-nav-mobile">
-            <button class="lightbox-prev">&lt;</button>
-            <button class="lightbox-next">&gt;</button>
+            <button type="button" class="lightbox-prev" aria-label="Previous">&lt;</button>
+            <button type="button" class="lightbox-next" aria-label="Next">&gt;</button>
         </div>
     </div>
 
     <script>
         // Accordion
-        const headers = document.querySelectorAll('.accordion-header');
+        const headers = document.querySelectorAll('button.accordion-header');
         headers.forEach(header => {
-            if (header.dataset.section === 'guildehall') return;
             header.addEventListener('click', () => {
                 const section = header.dataset.section;
                 const content = document.getElementById(section);
@@ -554,15 +622,17 @@
 
                 // Close all
                 document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
-                document.querySelectorAll('.accordion-toggle').forEach(t => t.textContent = '+');
+                document.querySelectorAll('button.accordion-header .accordion-toggle').forEach(t => t.textContent = '+');
+                headers.forEach(h => h.setAttribute('aria-expanded', 'false'));
 
                 // Open clicked if it wasn't active
                 if (!isActive) {
                     content.classList.add('active');
                     header.querySelector('.accordion-toggle').textContent = '-';
+                    header.setAttribute('aria-expanded', 'true');
                     // Update fade on gallery open
                     const gallery = content.querySelector('.gallery');
-                    if (gallery) updateFade(gallery);
+                    if (gallery) gallery.refresh();
                 }
             });
         });
@@ -599,14 +669,24 @@
             let offset = 0;
             gallery.dataset.offset = 0;
 
+            function maxOffset() {
+                return Math.max(0, items.length - getVisibleCount());
+            }
+
             function updateCarousel() {
                 const itemWidth = 200;
                 const gap = 16;
+                offset = Math.min(offset, maxOffset());
                 const shift = offset * (itemWidth + gap);
                 track.style.transform = `translateX(-${shift}px)`;
                 gallery.dataset.offset = offset;
+                prevBtn.disabled = offset === 0;
+                nextBtn.disabled = offset >= maxOffset();
                 updateFade(gallery);
             }
+
+            // Let the accordion and the resize handler re-sync this gallery
+            gallery.refresh = updateCarousel;
 
             prevBtn.addEventListener('click', () => {
                 if (offset > 0) {
@@ -616,24 +696,26 @@
             });
 
             nextBtn.addEventListener('click', () => {
-                const visible = getVisibleCount();
-                const max = items.length - visible;
-                if (offset < max) {
+                if (offset < maxOffset()) {
                     offset++;
                     updateCarousel();
                 }
             });
+
+            updateCarousel();
         });
 
         // Lightbox
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = lightbox.querySelector('img');
+        const lightboxCaption = lightbox.querySelector('.lightbox-caption');
         const lightboxClose = lightbox.querySelector('.lightbox-close');
         const lightboxPrev = lightbox.querySelector('.lightbox-prev');
         const lightboxNext = lightbox.querySelector('.lightbox-next');
         let currentGalleryItems = [];
         let currentLightboxIndex = 0;
         let currentGalleryId = '';
+        let lastFocused = null;
         const lightboxContainer = lightbox.querySelector('.lightbox-container');
 
         function updateLightboxPadding() {
@@ -644,58 +726,105 @@
             }
         }
 
-        function openLightbox(items, index, galleryId) {
-            currentGalleryItems = items;
+        // Caption: the project name, plus a link to the live site when there is one
+        function showSlide(index) {
             currentLightboxIndex = index;
+            const item = currentGalleryItems[index];
+            lightboxImg.src = item.dataset.src;
+            lightboxImg.alt = item.querySelector('img').alt;
+
+            const title = item.dataset.title || '';
+            const href = item.dataset.href || '';
+            let caption = title;
+            if (href) {
+                const domain = href.replace(/^https?:\/\//, '').replace(/\/$/, '');
+                const link = document.createElement('a');
+                link.className = 'site';
+                link.href = href;
+                link.target = '_blank';
+                link.rel = 'noopener';
+                link.textContent = domain + ' ↗';
+                lightboxCaption.textContent = title ? title + ' · ' : '';
+                lightboxCaption.appendChild(link);
+            } else {
+                lightboxCaption.textContent = caption;
+            }
+            lightboxCaption.hidden = !title && !href;
+
+            lightboxPrev.disabled = index === 0;
+            lightboxNext.disabled = index === currentGalleryItems.length - 1;
+        }
+
+        function openLightbox(items, index, galleryId) {
+            lastFocused = document.activeElement;
+            currentGalleryItems = items;
             currentGalleryId = galleryId;
-            lightboxImg.src = currentGalleryItems[currentLightboxIndex].dataset.src;
             updateLightboxPadding();
+            showSlide(index);
             lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            lightboxClose.focus();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            lightboxImg.src = '';
+            document.body.style.overflow = '';
+            if (lastFocused) lastFocused.focus();
         }
 
         document.querySelectorAll('.gallery').forEach(gallery => {
             const items = Array.from(gallery.querySelectorAll('.gallery-item'));
             const galleryId = gallery.closest('.accordion-content').id;
             items.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    if (item.dataset.href) {
-                        window.open(item.dataset.href, '_blank');
+                function activate() {
+                    // Items with a link but no image of their own (Film) go straight out
+                    if (item.dataset.href && !item.dataset.src) {
+                        window.open(item.dataset.href, '_blank', 'noopener');
                     } else {
                         openLightbox(items, index, galleryId);
+                    }
+                }
+                item.addEventListener('click', activate);
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        activate();
                     }
                 });
             });
         });
 
         lightboxPrev.addEventListener('click', () => {
-            if (currentLightboxIndex > 0) {
-                currentLightboxIndex--;
-                lightboxImg.src = currentGalleryItems[currentLightboxIndex].dataset.src;
-            }
+            if (currentLightboxIndex > 0) showSlide(currentLightboxIndex - 1);
         });
 
         lightboxNext.addEventListener('click', () => {
-            if (currentLightboxIndex < currentGalleryItems.length - 1) {
-                currentLightboxIndex++;
-                lightboxImg.src = currentGalleryItems[currentLightboxIndex].dataset.src;
-            }
+            if (currentLightboxIndex < currentGalleryItems.length - 1) showSlide(currentLightboxIndex + 1);
         });
 
-        lightboxClose.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-            lightboxImg.src = '';
-        });
+        lightboxClose.addEventListener('click', closeLightbox);
 
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active');
-                lightboxImg.src = '';
+            if (e.target === lightbox || e.target === lightbox.querySelector('.lightbox-stage')) {
+                closeLightbox();
             }
         });
 
-        // Update fade on resize
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft' && currentLightboxIndex > 0) {
+                showSlide(currentLightboxIndex - 1);
+            } else if (e.key === 'ArrowRight' && currentLightboxIndex < currentGalleryItems.length - 1) {
+                showSlide(currentLightboxIndex + 1);
+            }
+        });
+
+        // Keep the carousels in bounds when the visible count changes
         window.addEventListener('resize', () => {
-            document.querySelectorAll('.gallery').forEach(updateFade);
+            document.querySelectorAll('.gallery').forEach(g => g.refresh());
         });
     </script>
 </body>
